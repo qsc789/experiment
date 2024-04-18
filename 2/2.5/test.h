@@ -26,8 +26,25 @@ void StackDestroy(ST* ps);
 void StackPush(ST* ps, STDataType x);
 void StackPop(ST* ps);
 STDataType StackTop(ST* ps);
-int StackSize(ST* ps);
 bool StackEmpty(ST* ps);
 void StackPrint(ST ps);
 
-q);
+//—≠ª∑∂”¡–
+
+typedef point QDataType;
+typedef struct QueueNode
+{
+	struct QueueNode* next;
+	QDataType temp;
+}QueueNode;
+typedef struct Queue
+{
+	QueueNode* head;
+	QueueNode* tail;
+
+}Queue;
+void QueueInit(Queue* pq);
+void QueuePush(Queue* pq, QDataType temp);
+void QueuePop(Queue* pq);
+QDataType QueueFront(Queue* pq);
+bool QueueEmpty(Queue* pq);

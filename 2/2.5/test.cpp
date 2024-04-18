@@ -6,10 +6,13 @@ int main()
 	ST stemp;
 	StackInit(&st);
 	StackInit(&stemp);
+	Queue q;
+	QueueInit(&q);
 	char now;
 	int num, time;
 	while (1)
 	{
+		
 		cin >> now >> num >> time;
 		if (now == 'E')
 		{
@@ -19,13 +22,20 @@ int main()
 		temp.now = now;
 		temp.num = num;
 		temp.time = time;
-		if (now == 'A')
+		QueuePush(&q,temp);
+	}
+	
+	for(int i=1;!QueueEmpty(&q);i++)
+	{
+		if (QueueFront(&q).now == 'A')
 		{
+			QDataType temp = QueueFront(&q);
+			
 			StackPush(&st, temp);
 		}
 		else
 		{
-			while (num != StackTop(&st).num)
+			while (QueueFront(&q).num != StackTop(&st).num)
 			{
 				point t;
 				t = StackTop(&st);
@@ -39,7 +49,9 @@ int main()
 				StackPop(&stemp);
 			}
 		}
+		printf("第%d次操作后：\n",i);
 		StackPrint(st);
+		QueuePop(&q);
 	}
 	
 	return 0;

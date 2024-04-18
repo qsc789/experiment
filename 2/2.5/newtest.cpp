@@ -22,7 +22,7 @@ void StackPush(ST* ps, STDataType x)
 		STDataType* temp =(STDataType*) realloc(ps->a, sizeof(STDataType) * newCapacity);
 		if (temp == NULL)
 		{
-			cout << "realloc fail" << endl;
+			//cout << "realloc fail" << endl;
 			exit(-1);
 		}
 		ps->a = temp;
@@ -43,7 +43,11 @@ STDataType StackTop(ST* ps)
 	assert(!StackEmpty(ps));
 	return ps->a[ps->top - 1];
 }
-
+//int StackSize(ST* ps)
+//{
+//	assert(ps);
+//	return ps->top;
+//}
 bool StackEmpty(ST* ps)
 {
 	assert(ps);
@@ -54,7 +58,73 @@ void StackPrint(ST ps)
 	assert(&ps);
 	while (!StackEmpty(&ps))
 	{
-		cout << StackTop(&ps).num<<' '<< StackTop(&ps).time << endl;
+		//printf("%d %d\n", , );
+		cout << StackTop(&ps).num<<' '<<  StackTop(&ps).time<< endl;
 		StackPop(&ps);
 	}
+}
+void QueueInit(Queue* pq)
+{
+	assert(pq);
+	pq->head = NULL;
+	pq->tail = NULL;
+}
+//void QueueDestroy(Queue* pq)
+//{
+//	assert(pq);
+//	QueueNode* cur = pq->head;
+//	pq->tail->next = NULL;
+//	while (cur != NULL)
+//	{
+//      QueueNode* next = cur->next;
+//	  free(cur);
+//	  cur = next;
+//	}
+//	pq->head = NULL;
+//	pq->tail = NULL;
+//}
+void QueuePush(Queue* pq, QDataType x)
+{
+	assert(pq);
+	QueueNode* newnode = (QueueNode*)malloc(sizeof(QueueNode));
+	newnode->temp = x;
+	newnode->next = NULL;
+	if (pq->head == NULL)
+	{
+		pq->head = pq->tail = newnode;
+		newnode->next = pq->head;
+	}
+	else
+	{
+		pq->tail->next = newnode;
+		pq->tail = newnode;
+		//pq->tail->next = pq->head;
+	}
+}
+void QueuePop(Queue* pq)
+{
+	assert(pq);
+	assert(!QueueEmpty(pq));
+	QueueNode* next = pq->head->next;
+	free(pq->head);
+	pq->head = next;
+	if (pq->head == NULL)
+	{
+		pq->tail = NULL;
+	}
+}
+//QDataType QueueBack(Queue* pq)
+//{
+//	assert(pq);
+//	assert(!QueueEmpty(pq));
+//	return pq -> tail->temp;
+//}
+bool QueueEmpty(Queue* pq)
+{
+	assert(pq);
+	return pq->head == NULL;
+}
+QDataType QueueFront(Queue* pq)
+{
+	return (pq->head)->temp;
 }
