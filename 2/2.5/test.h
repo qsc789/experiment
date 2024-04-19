@@ -7,6 +7,7 @@
 #include<stdbool.h>
 using namespace std;
 //Õ»
+
 typedef struct point
 {
 	char now;
@@ -21,15 +22,15 @@ typedef struct Stack
 	int capacity;
 }ST;
 
-void StackInit(ST* ps);
+void StackInit(ST* ps,int n);
 void StackDestroy(ST* ps);
 void StackPush(ST* ps, STDataType x);
 void StackPop(ST* ps);
 STDataType StackTop(ST* ps);
 bool StackEmpty(ST* ps);
 void StackPrint(ST ps);
-
-//Ñ­»·¶ÓÁÐ
+bool StackFull(ST* ps);
+//Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 typedef point QDataType;
 typedef struct QueueNode
@@ -48,3 +49,4 @@ void QueuePush(Queue* pq, QDataType temp);
 void QueuePop(Queue* pq);
 QDataType QueueFront(Queue* pq);
 bool QueueEmpty(Queue* pq);
+int QueueSize(Queue pq);

@@ -1,33 +1,35 @@
-#include"test.h"
-void StackInit(ST* ps)
+#include"temp.h"
+
+void StackInit(ST* ps,int n)
 {
 	assert(ps);
-	ps->a = NULL;
+	ps->a = (STDataType*)malloc(sizeof(STDataType) * n);
 	ps->top = 0;
-	ps->capacity = 0;
+	ps->capacity = n;
 }
 void StackDestroy(ST* ps)
 {
 	assert(ps);
-	free(ps->a);
+	//free(ps->a);
 	ps->a = NULL;
 	ps->capacity = ps->top = 0;
 }
 void StackPush(ST* ps, STDataType x)
 {
 	assert(ps);
-	if (ps->top == ps->capacity)
-	{
-		int newCapacity = (ps->capacity == 0 ? 4 : ps->capacity * 2);
-		STDataType* temp =(STDataType*) realloc(ps->a, sizeof(STDataType) * newCapacity);
-		if (temp == NULL)
-		{
-			//cout << "realloc fail" << endl;
-			exit(-1);
-		}
-		ps->a = temp;
-		ps->capacity = newCapacity;
-	}
+	//if (ps->top == ps->capacity)
+	//{
+
+	//	int newCapacity = (ps->capacity == 0 ? 4 : ps->capacity * 2);
+	//	STDataType* temp = (STDataType*)realloc(ps->a, sizeof(STDataType) * newCapacity);
+	//	if (temp == NULL)
+	//	{
+	//		//cout << "realloc fail" << endl;
+	//		exit(-1);
+	//	}
+	//	ps->a = temp;
+	//	ps->capacity = newCapacity;
+	//}
 	ps->a[ps->top] = x;
 	ps->top++;
 }
@@ -53,13 +55,21 @@ bool StackEmpty(ST* ps)
 	assert(ps);
 	return ps->top == 0;
 }
+bool StackFull(ST* ps)
+{
+	if (ps->top == ps->capacity )
+	{
+		return true;
+	}
+	return false;
+}
 void StackPrint(ST ps)
 {
 	assert(&ps);
 	while (!StackEmpty(&ps))
 	{
 		//printf("%d %d\n", , );
-		cout << StackTop(&ps).num<<' '<<  StackTop(&ps).time<< endl;
+		cout << StackTop(&ps).num << ' ' << StackTop(&ps).time << endl;
 		StackPop(&ps);
 	}
 }
@@ -106,7 +116,7 @@ void QueuePop(Queue* pq)
 	assert(pq);
 	assert(!QueueEmpty(pq));
 	QueueNode* next = pq->head->next;
-	free(pq->head);
+	//free(pq->head);
 	pq->head = next;
 	if (pq->head == NULL)
 	{
@@ -127,4 +137,14 @@ bool QueueEmpty(Queue* pq)
 QDataType QueueFront(Queue* pq)
 {
 	return (pq->head)->temp;
+}
+int QueueSize(Queue pq)
+{
+	int num = 0;
+	while (!QueueEmpty(&pq))
+	{
+		num++;
+		QueuePop(&pq);
+	}
+	return num;
 }
