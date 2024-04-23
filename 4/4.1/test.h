@@ -29,12 +29,7 @@ typedef struct Queue
 
 BTNode* buildTree(string preorder);
 void QueueInit(Queue* pq);
-void QueuePush(Queue* pq, QDataType temp);
-void QueuePop(Queue* pq);
-QDataType QueueFront(Queue* pq);
-bool QueueEmpty(Queue* pq);
 
-int maxDepth(BTNode* root);
 void PrevOrder(BTNode* root);
 void InOrder(BTNode* root);
 void BackOrder(BTNode* root);

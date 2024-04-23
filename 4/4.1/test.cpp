@@ -1,5 +1,5 @@
-﻿#include"test.h"
-//int index = 0;
+#include"test.h"
+
 int main()
 {
 	
