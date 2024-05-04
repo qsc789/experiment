@@ -10,26 +10,62 @@
 
 int main()
 {
-	int num,num1;
-	cout << "输入节点个数：";
-	cin >> num;
+	int flag;
 	Graph G;
-	CreateGraph(&G,num);
-	cout << "输入边的个数：";
-	cin >> num1;
-	cout << "依次输入边的头和尾：" << endl;
-	for (int i = 1; i <= num1; i++)
+	cout << "*******************************************" << endl;
+	cout << "   输入1----------------------图的建立" << endl;
+	cout << "   输入2-----------------深度优先遍历图" << endl;
+	cout << "   输入3-----------------广度优先遍历图" << endl;
+	cout << "   输入0--------------------------结束" << endl;
+	cout << "*******************************************" << endl;
+	while (scanf_s("%d", &flag) != EOF)
 	{
-		int head, tail;
-		cin >> head >> tail;
-		addEdge(&G, head, tail);
+
+		if (flag != 0)
+		{
+			switch (flag)
+			{
+			case 1:
+			{
+				int num, num1;
+				cout << "输入节点个数：";
+				cin >> num;
+
+				CreateGraph(&G, num);
+				cout << "输入边的个数：";
+				cin >> num1;
+				cout << "依次输入边的头和尾：" << endl;
+				for (int i = 1; i <= num1; i++)
+				{
+					int head, tail;
+					cin >> head >> tail;
+					addEdge(&G, head, tail);
+
+				}
+				printGraph(&G);
+			}
+			break;
+			case 2:
+			{
+				bool visited[MAX_VERTICES] = { false };
+				cout << "dfs:" << endl;
+				dfs(&G, 0, visited);
+			}
+			break;
+			case 3:
+			{
+				cout << "bfs:" << endl;
+				bfs(&G, 0);
+			}
+			break;
+			}
+
+		}
+		else
+		{
+			break;
+		}
 
 	}
-	printGraph(&G);
-	bool visited[MAX_VERTICES] = { false };
-	cout << "dfs:" << endl;
-	dfs(&G, 0, visited);
-	cout << "bfs:" << endl;
-	bfs(&G, 0);
-
+	return 0;
 }
