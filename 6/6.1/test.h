@@ -8,48 +8,7 @@
 #include<string.h>
 using namespace std;
 
-#define MAX_VERTICES 100
-//ÁÚ½Ó¾ØÕó
-//typedef struct graph
-//{
-//	int vertices[MAX_VERTICES][MAX_VERTICES];
-//	int numVertices;
-//}Graph;
-//ÁÚ½ÓÁ´±í
-//typedef struct Node
-//{
-//	int vertex;
-//	struct Node* next;
-//}Node;
-//typedef struct graph
-//{
-//	Node* adjList[MAX_VERTICES];
-//	int numVertices;
-//}Graph;
-//typedef int QDataType;
-//typedef struct QueueNode
-//{
-//	struct QueueNode* next;
-//	QDataType data;
-//}QueueNode;
-//
-//typedef struct Queue
-//{
-//	QueueNode* head;
-//	QueueNode* tail;
-//
-//}Queue;
-//void QueueInit(Queue* pq);
-//void QueuePush(Queue* pq, QDataType x);
-//void QueuePop(Queue* pq);
-//bool QueueEmpty(Queue* pq);
-//QDataType QueueFront(Queue* pq);
-//void CreateGraph(Graph* G,int num);
-//void addEdge(Graph* G,int head,int tail);
-//void dfs(Graph* G, int start, bool visited[]);
-//void bfs(Graph* G,int start);
-//void printGraph(Graph* graph);
-//
+
 typedef int TDataType;
 typedef struct TreeNode {
 	TDataType data;
@@ -58,7 +17,7 @@ typedef struct TreeNode {
 	int level;
 }TreeNode;
 
-TreeNode* CreateTree(int x,TreeNode* root);//ÓÃ²åÈëÀ´¹¹½¨Ê÷
+TreeNode* CreateTree(int x,TreeNode* root);//ï¿½Ã²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 bool search(int flag,TreeNode* root,int num);
 void deleteNode(TreeNode* root, int flag);
 void prevOrder(TreeNode* root);
